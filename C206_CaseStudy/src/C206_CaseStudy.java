@@ -46,6 +46,8 @@ public class C206_CaseStudy {
 		    } if(option == 4) {
 		    	System.out.println("Successfully quit the program");
 		    }
+		    
+		    
 		} else if (menuOption == 2) {
 		System.out.println("-----LOGGED IN AS COORDINATOR/ INSTRUCTOR-----");
 	        
@@ -116,6 +118,7 @@ public class C206_CaseStudy {
 	  System.out.println("-----Student Detail Added!-----");
 	  
 	}
+	
 	//------------------------------------------view parents----------------------------------------------//
 
 	public static String retrieveAllStudentdetail(ArrayList<Parent> pList) {
@@ -175,7 +178,7 @@ public class C206_CaseStudy {
 	    System.out.println("-----New CCA category added!-----");
 	  }
 	  
-	  //------------------------------------------View all categories-----------------------------------------//
+	  //-----------------------------------------vView all categories-----------------------------------------//
 
 	  public static String retrieveAllCCACategories(ArrayList<String> categoryList) {
 	    String output = "";
