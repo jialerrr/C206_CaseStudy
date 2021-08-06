@@ -45,5 +45,35 @@ public class CCA {
 	public String getInstructor() {
 		return instructor;
 	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+
+	public void setInstructor(String instructor) {
+		this.instructor = instructor;
+	}
+	
+	
 	
 }
