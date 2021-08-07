@@ -8,16 +8,29 @@ public class C206_CaseStudy {
 		// TODO Auto-generated method stub
 
 		ArrayList<Student> sList = new ArrayList<Student>();
+		Student std1 = new Student("2000", "John Tan", "2E4", "Miss Tan", "Jack Tan", "jacktan@devmail.com", "91234567");
+		Student std2 = new Student("2001", "Sarah Lee", "2E4", "Miss Ong", "Max Lee", "maxleen@devmail.com", "92345678");
+		sList.add(std1);
+		sList.add(std2);
+		
 		ArrayList<Parent> pList = new ArrayList<Parent>();
+		
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
+		CCA c2 = new CCA("Sports", "1", 1, "1", "1", "1", "1");
+		CCA c3 = new CCA("Arts & Culture", "1", 1, "1", "1", "1", "1");
+		ccaList.add(c2);
+		ccaList.add(c3);
+		
+		ArrayList<String> ccaTitles = new ArrayList<String>();
+		ccaTitles.add(new String("Sports"));
+		ccaTitles.add(new String("Arts & Culture"));
+		
 
 		ArrayList<String> categoryList = new ArrayList<String>();
 		categoryList.add(new String("Sports"));
 		categoryList.add(new String("Arts & Culture"));
 
-		ArrayList<String> ccaTitles = new ArrayList<String>();
-		ccaTitles.add(new String("Sports"));
-		ccaTitles.add(new String("Arts & Culture"));
+		
 		boolean bQuit = true;
 		while (bQuit) {
 
