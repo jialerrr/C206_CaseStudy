@@ -35,8 +35,8 @@ public class C206_CaseStudy {
 				while (option != 5) {
 					if(option == 1) {
 						System.out.println("\n-----ADD STUDENT TO DATABASE-----");
-						Student p = inputStudentDetail();
-						addStudentDetail(sList,p);
+						Student p = inputStudent();
+						addStudent(sList,p);
 
 						System.out.println(adminMsg);
 						option = Helper.readInt("Enter option > ");
@@ -44,8 +44,8 @@ public class C206_CaseStudy {
 
 					else if(option==2) {
 						System.out.println("\n-----VIEW STUDENT IN DATABASE-----");
-						retrieveAllStudentdetail(sList);
-						viewAllStudentdetail(sList);
+						retrieveStudent(sList);
+						viewStudent(sList);
 
 						System.out.println(adminMsg);
 						option = Helper.readInt("Enter option > ");
@@ -53,7 +53,9 @@ public class C206_CaseStudy {
 
 					else if(option==3) {
 						System.out.println("\n-----UPDATE STUDENT IN DATABASE-----");
-						updateStudentDetail(pList, sList);
+						viewStudent(sList);
+						String id = Helper.readString("Enter Student ID to update > ");
+						updateStudentDetail(pList, sList, id);
 
 						System.out.println(adminMsg);
 						option = Helper.readInt("Enter option > ");
@@ -61,7 +63,7 @@ public class C206_CaseStudy {
 
 					else if(option==4) {
 						System.out.println("\n-----DELETE STUDENT IN DATABASE-----");
-						deleteDetails(sList);
+						deleteStudent(sList);
 
 						System.out.println(adminMsg);
 						option = Helper.readInt("Enter option > ");
@@ -122,8 +124,8 @@ public class C206_CaseStudy {
 
 					else if(option == 5) {
 						System.out.println("\n-----VIEW PARENTS IN REGISTERED LIST-----");
-						retrieveAllStudentRegDetail(pList);
-						viewAllStudentRegDetail(pList);
+						retrieveParent(pList);
+						viewParent(pList);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");   
@@ -131,7 +133,9 @@ public class C206_CaseStudy {
 
 					else if(option == 6) {
 						System.out.println("\n-----UPDATE PARENTS IN REGISTERED LIST-----");
-						updateParentDetail(pList, sList);
+						viewParent(pList);
+						String id = Helper.readString("Enter Student ID to update > ");
+						updateParentDetail(pList, sList, id);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");
@@ -140,7 +144,7 @@ public class C206_CaseStudy {
 
 					else if(option == 7) {
 						System.out.println("\n-----DELETE PARENTS IN REGISTERED LIST-----");
-						deleteRegStudent(pList);
+						deleteParent(pList);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");
@@ -149,8 +153,7 @@ public class C206_CaseStudy {
 					else if(option == 8) {
 						System.out.println("\n-----ADD CCA DETAILS-----");
 						CCA c1 = (inputCCADetail());
-						addCCADetail(ccaList,c1);
-						ccaTitles.add(c1.getTitle());
+						addCCADetail(ccaList, ccaTitles, c1);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");
@@ -167,7 +170,7 @@ public class C206_CaseStudy {
 
 					else if(option == 10) {
 						System.out.println("\n-----UPDATE CCA DETAILS-----");
-						updateCCADetail(ccaList);
+						updateCCADetail(ccaList, ccaTitles);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");
@@ -175,7 +178,7 @@ public class C206_CaseStudy {
 
 					else if(option == 11) {
 						System.out.println("\n-----DELETE CCA DETAILS-----");
-						deleteCCADetail(ccaList);
+						deleteCCADetail(ccaList, ccaTitles);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");
@@ -183,9 +186,14 @@ public class C206_CaseStudy {
 
 					else if(option == 12) {
 						System.out.println("\n-----ADD STUDENT TO CCA-----");
-						retrieveAllStudentRegDetail(pList);
-						viewAllStudentRegDetail(pList);
-						addstudentCCA(pList, ccaList, ccaTitles);
+						retrieveParent(pList);
+						viewParent(pList);
+						String studentCCAadd = Helper.readString("Enter student ID to add > ");
+
+						retrieveAllCCADetails(ccaList);
+						viewAllCCADetails(ccaList);
+						String ccaAdd = Helper.readString("Enter cca to add Students to > ");
+						addstudentCCA(pList, ccaList, ccaTitles, studentCCAadd ,ccaAdd);
 
 						System.out.println(catMsg);
 						option = Helper.readInt("Enter option > ");
@@ -227,8 +235,8 @@ public class C206_CaseStudy {
 
 					if(option == 1) {
 						System.out.println("\n-----REGISTER FOR CCA-----");
-						Parent r = inputRegStudent();
-						addStudentAccount(sList,pList,r);
+						Parent r = inputParent();
+						addParent(sList,pList,r);
 
 						System.out.println(regMsg);
 						option = Helper.readInt("Enter option > ");
@@ -236,7 +244,9 @@ public class C206_CaseStudy {
 
 					else if(option == 2) {
 						System.out.println("\n-----LOGIN AS PARENT-----");
-						checkLogin(pList, ccaList, ccaTitles);
+						String passID = Helper.readString("Enter CCA Registration ID > ");
+						String stdID = Helper.readString("Enter Student ID > ");
+						System.out.println(checkLogin(pList, ccaList, ccaTitles, stdID, passID));
 
 						System.out.println(regMsg);
 						option = Helper.readInt("Enter option > ");
@@ -257,7 +267,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------add student (USER STORY 1)----------------------------------------------//
 
-	public static Student inputStudentDetail() {
+	public static Student inputStudent() {
 		String ID = Helper.readString("Enter ID > ");
 		String name = Helper.readString("Enter Name > ");
 		String grade = Helper.readString("Enter Grade > ");
@@ -275,7 +285,7 @@ public class C206_CaseStudy {
 		}
 		return sd;
 	}
-	public static void addStudentDetail(ArrayList<Student> sList, Student sd) {
+	public static void addStudent(ArrayList<Student> sList, Student sd) {
 
 		sList.add(sd);
 		System.out.println("-----Student Detail Added!-----");
@@ -284,7 +294,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------view student (USER STORY 2)----------------------------------------------//
 
-	public static String retrieveAllStudentdetail(ArrayList<Student> sList) {
+	public static String retrieveStudent(ArrayList<Student> sList) {
 		String output = "";
 
 		for (int i = 0; i < sList.size(); i++) {
@@ -295,21 +305,21 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
-	public static void viewAllStudentdetail(ArrayList<Student> sList) {
+	public static void viewStudent(ArrayList<Student> sList) {
 		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("                                                               STUDENT DATABASE                                                               ");
 		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
 		String output = String.format("%-20s %-20s %-20s %-20s %-20s %-20s %-20s\n", "STUDENT ID", "STUDENT NAME", "GRADE",
 				"TEACHER","PARENT NAME","PARENT EMAIL","PARENT CONTACT" );
-		output += retrieveAllStudentdetail(sList);  
+		output += retrieveStudent(sList);  
 		System.out.println(output);
 	}
 
 	//------------------------------------------delete student (USER STORY 3)----------------------------------------------//
 
-	public static void deleteDetails(ArrayList<Student> sList) {
+	public static void deleteStudent(ArrayList<Student> sList) {
 		// write your code here
-		viewAllStudentdetail(sList);
+		viewStudent(sList);
 		String id = Helper.readString("Enter ID to delete > ");
 		for (int i = 0; i < sList.size(); i++) {
 			if (sList.get(i).getStudentID().equals(id)) {
@@ -400,11 +410,12 @@ public class C206_CaseStudy {
 
 		return c1;
 	}
-	public static void addCCADetail(ArrayList<CCA> ccaList, CCA c1) {
+	public static void addCCADetail(ArrayList<CCA> ccaList, ArrayList<String> ccaTitles, CCA c1) {
 
 		ccaList.add(c1);
-		System.out.println("-----CCA Detail Added!-----");
+		ccaTitles.add(c1.getTitle());
 
+		System.out.println("-----CCA Detail Added!-----");
 	}
 
 	//------------------------------------------view cca detail (USER STORY 8)----------------------------------------------//
@@ -431,7 +442,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------delete cca detail (USER STORY 9)----------------------------------------------//
 
-	public static void deleteCCADetail(ArrayList<CCA> ccaList) {
+	public static void deleteCCADetail(ArrayList<CCA> ccaList, ArrayList<String> ccaTitles) {
 		viewAllCCADetails(ccaList);
 		String title = Helper.readString("Enter CCA title to remove > ");
 		String output = "";
@@ -439,6 +450,11 @@ public class C206_CaseStudy {
 			if (ccaList.get(i).getTitle().equalsIgnoreCase(title)) {
 				ccaList.remove(i);
 				output = "-----CCA Detail: " + title + " deleted successfully.-----";
+				for (int x = 0; x < ccaTitles.size(); x++) {
+					if (ccaTitles.get(x).equalsIgnoreCase(title)){
+						ccaTitles.remove(x);
+					}
+				}
 				break;
 			}  else {
 				output = "-----CCA not found.-----";
@@ -449,7 +465,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------add parent (USER STORY 10)----------------------------------------------//
 
-	public static Parent inputRegStudent() { 
+	public static Parent inputParent() { 
 
 		String ID = Helper.readString("Enter student ID > "); 
 		String name = Helper.readString("Enter Name > "); 
@@ -488,7 +504,7 @@ public class C206_CaseStudy {
 		} 
 		return sdReg; 
 	} 
-	public static void addStudentAccount(ArrayList<Student> sList, ArrayList<Parent> pList, Parent sdReg) { 
+	public static void addParent(ArrayList<Student> sList, ArrayList<Parent> pList, Parent sdReg) { 
 
 		for (int j = 0; j < sList.size(); j++) {
 			if (sdReg.getStudentID().equals(sList.get(j).getStudentID())) {
@@ -503,7 +519,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------view parent (USER STORY 11)----------------------------------------------//
 
-	public static String retrieveAllStudentRegDetail(ArrayList<Parent> pList) { 
+	public static String retrieveParent(ArrayList<Parent> pList) { 
 
 		String output = ""; 
 
@@ -515,23 +531,23 @@ public class C206_CaseStudy {
 		} 
 		return output; 
 	} 
-	public static void viewAllStudentRegDetail(ArrayList<Parent> pList) {
+	public static void viewParent(ArrayList<Parent> pList) {
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("                                                                    REGISTERED STUDENT DETAILS                                                                    ");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
 		String output = String.format("%-20s %-20s %-20s %-20s %-20s %-20s %-20s %-20s\n", "STUDENT ID", "STUDENT NAME", "GRADE", 
 				"TEACHER", "PARENT NAME", "PARENT EMAIL", "PARENT CONTACT", "REGISTRATION ID" ); 
-		output += retrieveAllStudentRegDetail(pList);  
+		output += retrieveParent(pList);  
 
 		System.out.println(output); 
 	}
 
 	//------------------------------------------delete parent (USER STORY 12)----------------------------------------------//
 
-	public static void deleteRegStudent(ArrayList<Parent> pList){ 
+	public static void deleteParent(ArrayList<Parent> pList){ 
 
-		viewAllStudentRegDetail(pList);
+		viewParent(pList);
 		String id = Helper.readString("Enter ID to delete > ");
 		for (int i = 0; i < pList.size(); i++) {
 			if (pList.get(i).getStudentID().equals(id)) {
@@ -548,30 +564,28 @@ public class C206_CaseStudy {
 
 	//------------------------------------------login (USER STORY 13)----------------------------------------------//
 
-	public static void checkLogin(ArrayList<Parent> pList, ArrayList<CCA> ccaList, ArrayList<String> ccaTitles) {
-		String passID = Helper.readString("Enter CCA Registration ID > ");
-		String stdID = Helper.readString("Enter Student ID > ");
+	public static String checkLogin(ArrayList<Parent> pList, ArrayList<CCA> ccaList, ArrayList<String> ccaTitles, String stdId, String regID) {
+
+		String checkSuccess = "";
 		for (int i = 0; i < pList.size(); i++) {
-			if (pList.get(i).getregID().equals(passID) && pList.get(i).getStudentID().equals(stdID)) {
+			if (pList.get(i).getregID().equals(regID) && pList.get(i).getStudentID().equals(stdId)) {
 				String stdName = pList.get(i).getStudentName();
 				viewAllCCADetails(ccaList);
-				addstudentLOGIN(pList, ccaList, ccaTitles, stdID, stdName);
-				System.out.println("Success");
+				addstudentLOGIN(pList, ccaList, ccaTitles, stdId, stdName);
+				checkSuccess = "Success";
 			} else {
-				System.out.println("UnSuccess");
+				checkSuccess = "Unuccessful";
 			}
 		}
+		return checkSuccess;
 	}
 
 	//------------------------------------------add student to cca (USER STORY 14)----------------------------------------------//
 
-	private static void addstudentCCA(ArrayList<Parent> pList, ArrayList<CCA> ccaList,
-			ArrayList<String> ccaTitles) {
-		String studentCCAadd = Helper.readString("Enter student ID to add > ");
-		for (int i = 0; i < ccaList.size(); i ++) {
-			System.out.println(ccaList.get(i).getTitle());
-		}
-		String ccaAdd = Helper.readString("Enter cca to add Students to > ");
+	public static void addstudentCCA(ArrayList<Parent> pList, ArrayList<CCA> ccaList, ArrayList<String> ccaTitles, String studentCCAadd, String ccaAdd) {
+		//		for (int i = 0; i < ccaList.size(); i ++) {
+		//			System.out.println(ccaList.get(i).getTitle());
+		//		}
 		//checks existing cca
 		Boolean ccaFound = false;
 		for (int a = 0; a < ccaList.size(); a++) {
@@ -610,7 +624,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------view student in cca (USER STORY 15)----------------------------------------------//
 
-	private static void viewstudentCCA(ArrayList<String> ccaTitles) {
+	public static void viewstudentCCA(ArrayList<String> ccaTitles) {
 		for (int i = 0; i < ccaTitles.size(); i ++) {
 			System.out.println(ccaTitles.get(i));
 		}
@@ -619,10 +633,8 @@ public class C206_CaseStudy {
 	//------------------------------------------update student (USER STORY 16)----------------------------------------------//
 
 	@SuppressWarnings("unused")
-	public static void updateStudentDetail(ArrayList<Parent> pList,ArrayList<Student> sList) {
-		viewAllStudentdetail(sList);
+	public static void updateStudentDetail(ArrayList<Parent> pList,ArrayList<Student> sList, String id) {
 		if(sList.size()>0) {
-			String id = Helper.readString("Enter Student ID to update > ");
 			for(int i = 0; i < sList.size(); i++) {
 				if(id.equals(sList.get(i).getStudentID())) {
 					String newstudentname = Helper.readString("Enter New Student Name to update > ");
@@ -674,10 +686,11 @@ public class C206_CaseStudy {
 
 	//------------------------------------------update cca detail (USER STORY 17)----------------------------------------------//
 
-	public static void updateCCADetail(ArrayList<CCA> ccaList) {
+	public static void updateCCADetail(ArrayList<CCA> ccaList, ArrayList<String> ccaTitles) {
 		viewAllCCADetails(ccaList);
 		String title = Helper.readString("Enter CCA title to update > ");
 		String output = "";
+
 		for (int i = 0; i < ccaList.size(); i++) {
 			if (ccaList.get(i).getTitle().equalsIgnoreCase(title)) {
 				String newTitle = Helper.readString("Enter new title > ");
@@ -687,6 +700,11 @@ public class C206_CaseStudy {
 				String newTime = Helper.readString("Enter new time > ");
 				String newVenue = Helper.readString("Enter new venue > ");
 				String newInstruct = Helper.readString("Enter new instructor > ");
+				for (int x = 0; x < ccaTitles.size(); x++) {
+					if (ccaTitles.get(x).equalsIgnoreCase(title)){
+						ccaTitles.set(x, newTitle);
+					}
+				}
 				ccaList.get(i).setTitle(newTitle);
 				ccaList.get(i).setDescription(newDesc);
 				ccaList.get(i).setSize(newSize);
@@ -695,6 +713,7 @@ public class C206_CaseStudy {
 				ccaList.get(i).setVenue(newVenue);
 				ccaList.get(i).setInstructor(newInstruct);
 				output = "-----CCA Detail: " + newTitle + " updated successfully.-----";
+
 				break;
 			}  else {
 				output = "-----CCA not found.-----";
@@ -725,10 +744,7 @@ public class C206_CaseStudy {
 	//------------------------------------------update parent (USER STORY 19)----------------------------------------------//
 
 	@SuppressWarnings("unused")
-	public static void updateParentDetail(ArrayList<Parent> pList,ArrayList<Student> sList) {
-		viewAllStudentRegDetail(pList);
-
-		String id = Helper.readString("Enter Student ID to update > ");
+	public static void updateParentDetail(ArrayList<Parent> pList,ArrayList<Student> sList, String id) {
 
 		//loop for reg list
 		if(pList.size()>0) {
@@ -784,7 +800,7 @@ public class C206_CaseStudy {
 
 	//------------------------------------------delete student in cca (USER STORY 20)----------------------------------------------//
 
-	private static void deletestudentCCA(ArrayList<String> ccaTitles) {
+	public static void deletestudentCCA(ArrayList<String> ccaTitles) {
 
 		String studentCCAdel = Helper.readString("Enter student ID to delete > ");
 		for (int i = 0; i < ccaTitles.size(); i ++) {
@@ -794,14 +810,14 @@ public class C206_CaseStudy {
 		}
 	}
 
+
 	//------------------------------------------other codes----------------------------------------------//
 
-
-	private static void addstudentLOGIN(ArrayList<Parent> pList, ArrayList<CCA> ccaList,
+	public static void addstudentLOGIN(ArrayList<Parent> pList, ArrayList<CCA> ccaList,
 			ArrayList<String> ccaTitles, String stdID, String stdName) {
-		for (int i = 0; i < ccaList.size(); i ++) {
-			System.out.println(ccaList.get(i).getTitle());
-		}
+		//		for (int i = 0; i < ccaList.size(); i ++) {
+		//			System.out.println(ccaList.get(i).getTitle());
+		//		}
 		String ccaAdd = Helper.readString("Enter chosen CCA > ");
 		//checks existing cca
 		Boolean ccaFound = false;
