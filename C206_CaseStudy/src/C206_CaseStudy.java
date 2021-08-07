@@ -12,25 +12,25 @@ public class C206_CaseStudy {
 		Student std2 = new Student("2001", "Sarah Lee", "2E4", "Miss Ong", "Max Lee", "maxleen@devmail.com", "92345678");
 		sList.add(std1);
 		sList.add(std2);
-		
+
 		ArrayList<Parent> pList = new ArrayList<Parent>();
-		
+
 		ArrayList<CCA> ccaList = new ArrayList<CCA>();
 		CCA c2 = new CCA("Sports", "1", 1, "1", "1", "1", "1");
 		CCA c3 = new CCA("Arts & Culture", "1", 1, "1", "1", "1", "1");
 		ccaList.add(c2);
 		ccaList.add(c3);
-		
+
 		ArrayList<String> ccaTitles = new ArrayList<String>();
 		ccaTitles.add(new String("Sports"));
 		ccaTitles.add(new String("Arts & Culture"));
-		
+
 
 		ArrayList<String> categoryList = new ArrayList<String>();
 		categoryList.add(new String("Sports"));
 		categoryList.add(new String("Arts & Culture"));
 
-		
+
 		boolean bQuit = true;
 		while (bQuit) {
 
@@ -43,16 +43,14 @@ public class C206_CaseStudy {
 
 				int option = 0;
 				String adminMsg = "\n1. Add Student to Database\n2. View Students in database\n3. Update Student in Database\n4. Delete Student in Database\n5. Quit";
-				System.out.println(adminMsg);
-				option = Helper.readInt("Enter option > ");
+				option = optionAdmin(adminMsg);
 				while (option != 5) {
 					if(option == 1) {
 						System.out.println("\n-----ADD STUDENT TO DATABASE-----");
 						Student p = inputStudent();
 						addStudent(sList,p);
 
-						System.out.println(adminMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionAdmin(adminMsg);
 					}
 
 					else if(option==2) {
@@ -60,8 +58,7 @@ public class C206_CaseStudy {
 						retrieveStudent(sList);
 						viewStudent(sList);
 
-						System.out.println(adminMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionAdmin(adminMsg);
 					}
 
 					else if(option==3) {
@@ -70,16 +67,14 @@ public class C206_CaseStudy {
 						String id = Helper.readString("Enter Student ID to update > ");
 						updateStudentDetail(pList, sList, id);
 
-						System.out.println(adminMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionAdmin(adminMsg);
 					} 
 
 					else if(option==4) {
 						System.out.println("\n-----DELETE STUDENT IN DATABASE-----");
 						deleteStudent(sList);
 
-						System.out.println(adminMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionAdmin(adminMsg);
 					}
 
 				} if(option == 5) {
@@ -94,10 +89,9 @@ public class C206_CaseStudy {
 				System.out.println("\n-----LOGGED IN AS COORDINATOR/ INSTRUCTOR-----");
 
 				int option = 0;
-				String catMsg = "\n1. Add CCA category\n2. View all CCA categories\n3. Update CCA category\n4. Delete CCA category\n5. View Parents in Registration List\n6. Update Parent in Registration List\n7. Delete Parent from Registration List"
+				String coordMsg = "\n1. Add CCA category\n2. View all CCA categories\n3. Update CCA category\n4. Delete CCA category\n5. View Parents in Registration List\n6. Update Parent in Registration List\n7. Delete Parent from Registration List"
 						+ "\n8. Add CCA details\n9. View CCA details\n10. Update CCA details\n11. Delete CCA details\n12. Add Student to CCA\n13. View Students in CCA\n14. Delete Student in CCA\n15. Quit";
-				System.out.println(catMsg);
-				option = Helper.readInt("Enter option > ");
+				option = optionAdmin(coordMsg);
 
 				while (option != 15) {
 
@@ -106,8 +100,7 @@ public class C206_CaseStudy {
 						String cat = inputTitle();
 						addCategory(categoryList,cat);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					}
 
 					else if(option == 2) {
@@ -115,24 +108,21 @@ public class C206_CaseStudy {
 						retrieveAllCCACategories(categoryList);
 						viewAllCategories(categoryList);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");   
+						option = optionCoord(coordMsg);
 					}
 
 					else if(option == 3) {
 						System.out.println("\n-----UPDATE CATEGORY-----");
 						updateCategories(categoryList);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 4) {
 						System.out.println("\n-----DELETE CATEGORY-----");
 						deleteCategory(categoryList);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 5) {
@@ -140,8 +130,7 @@ public class C206_CaseStudy {
 						retrieveParent(pList);
 						viewParent(pList);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");   
+						option = optionCoord(coordMsg); 
 					} 
 
 					else if(option == 6) {
@@ -150,17 +139,14 @@ public class C206_CaseStudy {
 						String id = Helper.readString("Enter Student ID to update > ");
 						updateParentDetail(pList, sList, id);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
-
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 7) {
 						System.out.println("\n-----DELETE PARENTS IN REGISTERED LIST-----");
 						deleteParent(pList);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					}
 
 					else if(option == 8) {
@@ -168,8 +154,7 @@ public class C206_CaseStudy {
 						CCA c1 = (inputCCADetail());
 						addCCADetail(ccaList, ccaTitles, c1);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 9) {
@@ -177,24 +162,21 @@ public class C206_CaseStudy {
 						retrieveAllCCADetails(ccaList);
 						viewAllCCADetails(ccaList);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 10) {
 						System.out.println("\n-----UPDATE CCA DETAILS-----");
 						updateCCADetail(ccaList, ccaTitles);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 11) {
 						System.out.println("\n-----DELETE CCA DETAILS-----");
 						deleteCCADetail(ccaList, ccaTitles);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 12) {
@@ -208,24 +190,21 @@ public class C206_CaseStudy {
 						String ccaAdd = Helper.readString("Enter cca to add Students to > ");
 						addstudentCCA(pList, ccaList, ccaTitles, studentCCAadd ,ccaAdd);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);;
 					} 
 
 					else if(option == 13) {
 						System.out.println("\n-----VIEW STUDENTS IN CCA-----");
 						viewstudentCCA(ccaTitles);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					} 
 					else if(option == 14) {
 						System.out.println("\n-----DELETE STUDENT IN CCA-----");
 						viewstudentCCA(ccaTitles);
 						deletestudentCCA(ccaTitles);
 
-						System.out.println(catMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionCoord(coordMsg);
 					}
 
 				} if(option == 15) {
@@ -239,10 +218,9 @@ public class C206_CaseStudy {
 				System.out.println("\n-----LOGGED IN AS PARENT-----");
 
 				int option = 0;
-				String regMsg = "\n1. Register for a CCA\n2. Login\n3. View CCA details\n4. Quit";
+				String parentMsg = "\n1. Register for a CCA\n2. Login\n3. View CCA details\n4. Quit";
 
-				System.out.println(regMsg);
-				option = Helper.readInt("Enter option > ");
+				option = optionParent(parentMsg);
 
 				while (option != 4) {
 
@@ -251,8 +229,7 @@ public class C206_CaseStudy {
 						Parent r = inputParent();
 						addParent(sList,pList,r);
 
-						System.out.println(regMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionParent(parentMsg);
 					}
 
 					else if(option == 2) {
@@ -261,21 +238,38 @@ public class C206_CaseStudy {
 						String stdID = Helper.readString("Enter Student ID > ");
 						System.out.println(checkLogin(pList, ccaList, ccaTitles, stdID, passID));
 
-						System.out.println(regMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionParent(parentMsg);
 					} else if(option == 3) {
 						System.out.println("\n-----VIEW CCA DETAILS-----");
 						retrieveAllCCADetails(ccaList);
 						viewAllCCADetails(ccaList);
 
-						System.out.println(regMsg);
-						option = Helper.readInt("Enter option > ");
+						option = optionParent(parentMsg);
 					} 
 				} if(option == 4) {
 					System.out.println("\nSuccessfully logged out \n");
 				}
 			}
 		}
+	}
+
+	private static int optionAdmin(String adminMsg) {
+		int option;
+		System.out.println(adminMsg);
+		option = Helper.readInt("Enter option > ");
+		return option;
+	}
+
+	private static int optionCoord(String coordMsg) {
+		int option;
+		option = optionAdmin(coordMsg);
+		return option;
+	}
+
+	private static int optionParent(String parentMsg) {
+		int option;
+		option = optionAdmin(parentMsg);
+		return option;
 	}
 
 	//------------------------------------------add student (USER STORY 1)----------------------------------------------//
@@ -388,6 +382,7 @@ public class C206_CaseStudy {
 		String output = retrieveAllCCACategories(categoryList);  
 		System.out.println(output);
 	}
+
 
 	//------------------------------------------delete category (USER STORY 6)----------------------------------------------//
 
