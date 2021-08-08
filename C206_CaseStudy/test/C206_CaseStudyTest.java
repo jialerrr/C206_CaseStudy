@@ -498,7 +498,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addCCADetail(ccaList, ccaTitles, ca1);
 		assertEquals("Test if that the  arraylist size is 1?", 1, ccaList.size());
 
-		//Check that after deleting a cca title, list is 1
+		//Check that after add a cca title, title list is 1
 		assertEquals("Test if that the  arraylist size is 1?", 1, ccaTitles.size());
 
 		//Given a list, after deleting 1 item, the list is 0
