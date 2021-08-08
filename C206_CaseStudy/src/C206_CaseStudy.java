@@ -105,22 +105,22 @@ public class C206_CaseStudy {
 
 					else if(option == 2) {
 						System.out.println("\n-----VIEW CATEGORIES-----");
-						retrieveAllCCACategories(categoryList);
-						viewAllCategories(categoryList);
+						retrieveAllCCACategories(categoryList, ccaList);
+						viewAllCategories(categoryList, ccaList);
 
 						option = optionCoord(coordMsg);
 					}
 
 					else if(option == 3) {
 						System.out.println("\n-----UPDATE CATEGORY-----");
-						updateCategories(categoryList);
+						updateCategories(categoryList, ccaList);
 
 						option = optionCoord(coordMsg);
 					} 
 
 					else if(option == 4) {
 						System.out.println("\n-----DELETE CATEGORY-----");
-						deleteCategory(categoryList);
+						deleteCategory(categoryList, ccaList);
 
 						option = optionCoord(coordMsg);
 					} 
@@ -362,33 +362,40 @@ public class C206_CaseStudy {
 	}
 
 	//------------------------------------------view category (USER STORY 5)----------------------------------------------//
-
-	public static String retrieveAllCCACategories(ArrayList<String> categoryList) {
+	
+	public static String retrieveAllCCACategories(ArrayList<String> categoryList, ArrayList<CCA> ccaList) {
 		String output = "";
 
 		if (!categoryList.isEmpty()) {
 			for (int i = 0; i < categoryList.size(); i++) {
 
-				output += categoryList.get(i) + ", ";
-			}   
+				output += "> " + categoryList.get(i) + " Category\n";
+				output += String.format("   %-23s %-17s %-12s %-10s %-10s %-10s %-10s\n\n", ccaList.get(i).getTitle(), 
+						ccaList.get(i).getDescription(), ccaList.get(i).getSize(), ccaList.get(i).getDay(), ccaList.get(i).getTime(),
+						ccaList.get(i).getVenue(), ccaList.get(i).getInstructor());
+				}
+				return output;
 		} else {
 			output = "-----No CCA categories available-----";
 		}
+		
 		return output;
 	}
-	public static void viewAllCategories(ArrayList<String> categoryList) {
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.println("                                                                          CCA CATEGORIES                                                                          ");
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-		String output = retrieveAllCCACategories(categoryList);  
+	public static void viewAllCategories(ArrayList<String> categoryList, ArrayList<CCA> ccaList) {
+		System.out.println("---------------------------------------------------");
+		System.out.println("           CCA CATEGORIES & CCA DETAILS            ");
+		System.out.println("---------------------------------------------------");
+		String output = String.format("%-50s %-17s %-11s %-10s %-10s %-10s %-10s\n\n", "> CATEGORIES AVAILABLE \nVARIOUS CCAS UNDER IT", "DESCRIPTION",
+				"SIZE","DAY","TIME","VENUE","INSTRUCTOR" );
+		output += retrieveAllCCACategories(categoryList, ccaList);
 		System.out.println(output);
 	}
 
 
 	//------------------------------------------delete category (USER STORY 6)----------------------------------------------//
 
-	public static void deleteCategory(ArrayList<String> categoryList) {
-		viewAllCategories(categoryList);
+	public static void deleteCategory(ArrayList<String> categoryList, ArrayList<CCA> ccaList) {
+		viewAllCategories(categoryList, ccaList);
 		String name = Helper.readString("Enter category name to remove > ");
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {
@@ -733,8 +740,8 @@ public class C206_CaseStudy {
 
 	//------------------------------------------update category (USER STORY 18)----------------------------------------------//
 
-	public static void updateCategories(ArrayList<String> categoryList) {
-		viewAllCategories(categoryList);
+	public static void updateCategories(ArrayList<String> categoryList, ArrayList<CCA> ccaList) {
+		viewAllCategories(categoryList, ccaList);
 		String cat = Helper.readString("Enter CCA category to update > ");
 		String output = "";
 		for (int i = 0; i < categoryList.size(); i++) {

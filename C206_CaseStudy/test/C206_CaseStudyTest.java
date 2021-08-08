@@ -121,7 +121,7 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is valid arraylist to add to", CategoryList);
 
 		//test if the list of parent retrieved from the C206_CaseStudy is empty
-		String allcategory = C206_CaseStudy.retrieveAllCCACategories(CategoryList);
+		String allcategory = C206_CaseStudy.retrieveAllCCACategories(CategoryList, ccaList);
 		String testOutput = "-----No CCA categories available-----";
 		assertEquals("Check that retrieveAllCCACategories", testOutput, allcategory);
 
@@ -130,9 +130,9 @@ public class C206_CaseStudyTest {
 		assertEquals("Test if that the  arraylist size is 1?", 1, CategoryList.size());
 
 		//test if the expected output string same as the list of student retrieved from the C206_CaseStudy
-		allcategory= C206_CaseStudy.retrieveAllCCACategories(CategoryList);
+		allcategory= C206_CaseStudy.retrieveAllCCACategories(CategoryList, ccaList);
 
-		testOutput = "Sports, ";
+		testOutput = "Sport  ";
 
 		assertEquals("Check that retrieveAllCCACategories", testOutput, allcategory);
 
