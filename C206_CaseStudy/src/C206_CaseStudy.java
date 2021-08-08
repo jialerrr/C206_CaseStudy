@@ -246,6 +246,7 @@ public class C206_CaseStudy {
 
 						option = optionParent(parentMsg);
 					} 
+					
 				} if(option == 4) {
 					System.out.println("\nSuccessfully logged out \n");
 				}
@@ -828,41 +829,49 @@ public class C206_CaseStudy {
 		//		}
 		String ccaAdd = Helper.readString("Enter chosen CCA > ");
 		//checks existing cca
-		Boolean ccaFound = false;
-		for (int a = 0; a < ccaList.size(); a++) {
-			if (ccaAdd.equalsIgnoreCase(ccaList.get(a).getTitle())) {
-				ccaFound = true;
-				break;
-			}
-		}
+//		Boolean ccaFound = false;
+//		for (int a = 0; a < ccaList.size(); a++) {
+//			if (ccaAdd.equalsIgnoreCase(ccaList.get(a).getTitle())) {
+//				ccaFound = true;
+//				System.out.println("\n-----SUCCESSFUL-----");
+//				break;
+//			} else {
+//				System.out.println("\n-----UNSUCCESSFUL-----");
+//			}
+//		}
 		//checks existing student
-		Boolean studentFound = false;
-		String sName = "";
-		String sID = "";
-		for (int x = 0; x < pList.size(); x++) {
-			if (stdName.equalsIgnoreCase(pList.get(x).getStudentID())) {
-				sName = pList.get(x).getStudentName();
-				sID = pList.get(x).getStudentID();
-				studentFound = true;
-				break;
-			}
-		}
+//		Boolean studentFound = false;
+//		String sName = "";
+//		String sID = "";
+//		for (int x = 0; x < pList.size(); x++) {
+//			if (stdName.equalsIgnoreCase(pList.get(x).getStudentID())) {
+//				sName = pList.get(x).getStudentName();
+//				sID = pList.get(x).getStudentID();
+//				studentFound = true;
+//				System.out.println("\n-----SUCCESSFUL-----");
+//				break;
+//			} else {
+//				System.out.println("\n-----UNSUCCESSFUL-----");
+//			}
+//		}
 
 		//adds student id and name to ccaTitle
-		if (ccaFound == true && studentFound == true) {
+//		if (ccaFound == true && studentFound == true) {
 			for (int y = 0; y < ccaTitles.size(); y++) {
 				if (ccaTitles.get(y).equalsIgnoreCase(ccaAdd)) {
-					String strNames = sName+"("+sID+"), ";
+					String strNames = stdName+"("+stdID+"), ";
 					ccaTitles.add(y+1, strNames);
 					System.out.println("\n-----SUCCESSFUL-----");
 					break;
 				}
-			}
-		} else {
+//			}
+//		} 
+				else {
 			System.out.println("\n-----UNSUCCESSFUL-----");
 		}
 	}
 
+}
 }
 
 
